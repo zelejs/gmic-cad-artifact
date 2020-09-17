@@ -1,0 +1,19 @@
+target/*
+target/
+build/*
+.idea/*
+.gradle/*
+.svn/*
+*.iml
+*.swp
+*.db
+logs/*
+.DS_Store
+view-app
+out/*
+obsel/
+*.log
+code/*
+
+# idea
+*/.idea
