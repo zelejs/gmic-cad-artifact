@@ -27,14 +27,33 @@
             <artifactId>gmic-cad-vendor</artifactId>
             <version>1.0.0</version>
         </dependency>
-
-
         <dependency>
             <groupId>com.jfeat</groupId>
-            <artifactId>crud-dev</artifactId>
-            <version>${crud-dev.version}</version>
-            <scope>provided</scope>
+            <artifactId>gmic-cad-users</artifactId>
+            <version>1.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.jfeat</groupId>
+            <artifactId>gmic-cad-oms</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <!-- 上传/短信 服务依赖 -->
+        <dependency>
+            <groupId>com.jfeat</groupId>
+            <artifactId>aliyun-hub</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <!-- 导入导出 服务依赖 -->
+        <dependency>
+            <groupId>com.jfeat</groupId>
+            <artifactId>zero-io-all</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+
+        <!-- dev tools -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
