@@ -1,0 +1,79 @@
+version: '3'
+services:
+  api:
+    image: allin-web:jdk11
+    container_name: api
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./api:/webapps
+
+  web:
+    image: daocloud.io/library/nginx:latest
+    container_name: web
+    privileged: true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./web/dist:/usr/share/nginx/html
+      - ./web/conf.d:/etc/nginx/conf.d
+      - ./web/logs:/var/log/nginx
+
+  mysql:
+    container_name: mysql
+    #image: 'daocloud.io/library/mysql:5.7'
+    image: 'mysql:5.7'
+    restart: always
+    environment:
+      TZ: "Asia/Shanghai"
+      MYSQL_DATABASE: 'cinema'
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_USER: 'cinema'
+      MYSQL_PASSWORD: 'cinema'
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./mysql/local.mysql.sh:/local.mysql.sh
+
+  nginx:
+    container_name: nginx
+    image: 'daocloud.io/library/nginx:latest'
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/logs:/var/log/nginx
+      - ./nginx/cert:/cert
+      - ./images:/images
+    environment:
+      TZ: "Asia/Shanghai"
+
+  mysqlbackup:
+    image: zelejs/mysqlback:latest
+    container_name: mysqlbackup
+    privileged: true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./mysqlbackup/data:/var/mysqlbackup/data
+      - ./mysqlbackup/log:/var/mysqlbackup/log
+    environment:
+      MYSQL_DB: cinema
+      TZ: Asia/Shanghai
+      MYSQL_HOST: 172.17.0.1
+      MYSQL_PORT: 3306
+      MYSQL_USER: root 
+      MYSQL_USER_PASSWORD: root
+      CRONTAB_DAILY_HOUR: 2
+      CRONTAB_DAILY_MIN: 15
+
+  # redis:
+  #   container_name: redis
+  #   image: 'daocloud.io/library/redis:3.2.9'
+  #   environment:
+  #     TZ: "Asia/Shanghai"
+  #   ports:
+  #     - 6379:6379
+  #   volumes:
+  #     - ./redis/conf:/usr/local/etc/redis
+  #   command:
+  #     redis-server /usr/local/etc/redis/redis.conf
