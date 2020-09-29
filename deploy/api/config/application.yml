@@ -4,13 +4,33 @@ spring:
   datasource:
       url: jdbc:mysql://mysql:3306/cinema?autoReconnect=true&useUnicode=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
       username: root
-      password: root
+      password: rootAZaz!123
       filters: log4j,wall,mergeStat
       sql-script-encoding: UTF-8
       schema: classpath*:sql/*-schema.sql
       data: classpath*:sql/*-data.sql
-      initialize: false 
+      initialize: false
 
 logging:
   level: warn 
   config: config/logback-spring.xml
+
+io:
+  excel-template-dir: "templates"
+
+fs:
+  fileUploadPath: /attachments
+  fileHost: attachments
+
+aliyun:
+  sso:
+    endpoint: "http://oss-cn-shenzhen.aliyuncs.com"
+    accessKeyId: ""
+    accessKeySecret: ""
+    bucketName: ""
+    username: ""
+    thumbParam: "x-oss-process=image/resize,m_fill,h_750,w_750"
+    accessUrl: "http://xxxxxx.oss-cn-shenzhen.aliyuncs.com/"
+  sms:
+    accessKeyId: ""
+    accessKeySecret: ""
