@@ -1,0 +1,16 @@
+---
+spring:
+  profiles: produce
+  datasource:
+      url: jdbc:mysql://mysql:3306/cinema?autoReconnect=true&useUnicode=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+      username: root
+      password: root
+      filters: log4j,wall,mergeStat
+      sql-script-encoding: UTF-8
+      schema: classpath*:sql/*-schema.sql
+      data: classpath*:sql/*-data.sql
+      initialize: false 
+
+logging:
+  level: warn 
+  config: config/logback-spring.xml
