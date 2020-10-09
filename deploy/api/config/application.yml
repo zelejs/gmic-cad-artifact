@@ -20,7 +20,7 @@ io:
 
 fs:
   fileUploadPath: /attachments
-  fileHost: attachments
+  fileHost: /attachments
 
 aliyun:
   sso:
