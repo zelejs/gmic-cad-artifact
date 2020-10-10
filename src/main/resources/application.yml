@@ -72,6 +72,19 @@ mybatis-plus:
     multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
 
+##########################################################
+aliyun:
+  sms:
+    signName: "星鱼科技"
+    accessKeyId: "LTAI4G5uDRahcSJsEXshhb5v"
+    accessSecret: "i0oYnQqdsIZHjO1vG36wsLNrkD1LhU"
+    createPlan: "SMS_203677187"
+    createOrder: "SMS_203677196"
+    deliverTask: "SMS_203677243"
+    taskDeadLine: "SMS_203677248"
+    taskUpload: "SMS_203677255"
+    registration: "SMS_203820167"
+
 ---
 
 ##########################################################
