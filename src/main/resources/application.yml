@@ -84,7 +84,7 @@ aliyun:
     taskDeadLine: "SMS_203677248"
     taskUpload: "SMS_203677255"
     registration: "SMS_203820167"
-
+    enable: true
 ---
 
 ##########################################################
@@ -115,7 +115,7 @@ am:
 spring:
   profiles: dev
   datasource:
-      url: jdbc:mysql://localhost:3306/3?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+      url: jdbc:mysql://localhost:3307/ca_cinema?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
       username: root
       password: root
 #      url: jdbc:mysql://120.24.235.88/test?characterEncoding=utf8&autoReconnect=true&useUnicode=true&useSSL=false&serverTimezone=GMT%2B8
