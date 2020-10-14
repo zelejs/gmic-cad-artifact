@@ -8,6 +8,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./api:/webapps
+      - ./attachments:/attachments
     environment:
       DL_STANDALONE: "gmic-cad-artifact-1.0.0-standalone.jar"
     logging:
@@ -58,7 +59,7 @@ services:
       - ./nginx/logs:/var/log/nginx
       - ./nginx/cert:/cert
       - ./images:/images
-      - ./attachments:/attachments
+      - ./attachments:/usr/share/nginx/html/attachments
     environment:
       TZ: "Asia/Shanghai"
     logging:
