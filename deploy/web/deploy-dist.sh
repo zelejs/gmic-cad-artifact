@@ -15,6 +15,6 @@ if [ -d dist ];then
 else
     mkdir dist
 fi
-tar zxf dist.tar.gz 
-rm dist.tar.gz
+tar zxf $WAR 
+rm $WAR
 docker restart $DOCKER_NAME
