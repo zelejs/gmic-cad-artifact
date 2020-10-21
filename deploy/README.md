@@ -78,7 +78,7 @@
   ## 使用docker中的crudless配合zero-json生成页面至对应的路径下
   docker exec cinema-web crudless --input /tmp --output /src/pages
   ## 清理空间
-cd .. && rm -rf ./tmp/*
+  cd .. && rm -rf ./tmp/*
   ```
   
 
