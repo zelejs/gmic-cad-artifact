@@ -22,6 +22,20 @@
     </properties>
 
     <dependencies>
+
+        <!-- 问题跟踪模块 -->
+        <dependency>
+            <groupId>com.jfeat</groupId>
+            <artifactId>issue</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <!-- 微服务权限模块 -->
+        <dependency>
+            <groupId>com.jfeat</groupId>
+            <artifactId>app-permission</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
         <dependency>
             <groupId>com.jfeat</groupId>
             <artifactId>gmic-cad-vendor</artifactId>
