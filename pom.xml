@@ -38,14 +38,15 @@
 
         <dependency>
             <groupId>com.jfeat</groupId>
-            <artifactId>gmic-cad-vendor</artifactId>
+            <artifactId>gmic-cad-users</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>com.jfeat</groupId>
-            <artifactId>gmic-cad-users</artifactId>
+            <artifactId>gmic-cad-vendor</artifactId>
             <version>1.0.0</version>
         </dependency>
+
         <dependency>
             <groupId>com.jfeat</groupId>
             <artifactId>gmic-cad-oms</artifactId>
