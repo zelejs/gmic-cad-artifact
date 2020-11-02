@@ -10,6 +10,10 @@ spring:
       schema: classpath*:sql/*-schema.sql
       data: classpath*:sql/*-data.sql
       initialize: false
+  http:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
 
 logging:
   level: warn 
