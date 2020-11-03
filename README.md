@@ -1,5 +1,5 @@
 # gmic-cad-artifact
-CAD package standalone
+CAD package standalone 
 
 ### 远程触发本地部署
 ```shell
