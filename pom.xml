@@ -22,16 +22,31 @@
     </properties>
 
     <dependencies>
+
+        <!-- 问题跟踪模块 -->
         <dependency>
             <groupId>com.jfeat</groupId>
-            <artifactId>gmic-cad-vendor</artifactId>
+            <artifactId>issue</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <!-- 微服务权限模块 -->
+        <dependency>
+            <groupId>com.jfeat</groupId>
+            <artifactId>app-permission</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
         <dependency>
             <groupId>com.jfeat</groupId>
             <artifactId>gmic-cad-users</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.jfeat</groupId>
+            <artifactId>gmic-cad-vendor</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
         <dependency>
             <groupId>com.jfeat</groupId>
             <artifactId>gmic-cad-oms</artifactId>
@@ -46,10 +61,27 @@
         </dependency>
 
         <!-- 导入导出 服务依赖 -->
-        <!--<dependency>
+      <!--  <dependency>
             <groupId>com.jfeat</groupId>
             <artifactId>zero-io-all</artifactId>
             <version>1.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.jfeat</groupId>
+                    <artifactId>zero-io-pdf</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>-->
+
+      <!--  <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.5</version>
         </dependency>-->
 
 

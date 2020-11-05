@@ -85,6 +85,13 @@ aliyun:
     taskUpload: "SMS_203677255"
     registration: "SMS_203820167"
     enable: true
+
+io:
+  excel-template-dir: "templates"
+
+fs:
+  fileUploadPath: /attachments
+  fileHost: /attachments
 ---
 
 ##########################################################
@@ -126,7 +133,7 @@ spring:
       sql-script-encoding: UTF-8
       schema: classpath*:sql/**/*-schema.sql
       data: classpath*:sql/**/*-data.sql
-      initialize: true
+      initialize: false
 
 logging:
   level: debug
