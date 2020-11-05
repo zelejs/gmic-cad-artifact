@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>星+智能营销云平台</title>
+</head>
+
+<style type="text/css">
+  .p-index {
+    height: 100%;
+    background: #fff;
+  }
+
+  .p-index .header {
+    height: 70px;
+    padding: 0 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .p-index .header .logo {
+    width: 160px;
+    height: 50px;
+    background-image: url('./assets/logo_black.svg');
+    background-repeat: no-repeat;
+  }
+
+  .p-index .header .button {
+    width: 210px;
+  }
+
+  .p-index .header .button>button {
+    border: 1px solid #ff6C01;
+    border-radius: 4px;
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+    transition: all 0.3s;
+    cursor: pointer;
+    outline: unset;
+    width: 90px;
+    padding: 4px 0;
+    font-size: 14px;
+  }
+
+  .p-index .header .button>button:nth-child(1) {
+    color: #ff6C01;
+    margin-right: 16px;
+  }
+
+  .p-index .header .button>button:nth-child(1):hover {
+    color: #ff842c;
+  }
+
+  .p-index .header .button>button:nth-child(1):active {
+    color: #c2570b;
+  }
+
+  .p-index .header .button>button:nth-child(2) {
+    background-color: #ff6C01;
+    border-color: #ff6C01;
+  }
+
+  .p-index .header .button>button:nth-child(2):hover {
+    background-color: #ff842c;
+    border-color: #ff842c;
+  }
+
+  .p-index .header .button>button:nth-child(2):active {
+    background-color: #c2570b;
+    border-color: #c2570b;
+  }
+
+  .p-index .scaleContainer {
+    height: 50px;
+    border-top: 1px solid #ff6c01;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .p-index .scaleContainer .scale-left {
+    position: absolute;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 40px 1000px 0 0;
+    border-color: rgba(255, 108, 1, 0.15) transparent transparent transparent;
+  }
+
+  .p-index .scaleContainer .scale-right {
+    position: absolute;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 1000px 40px 0;
+    border-color: transparent #ff6c01 transparent transparent;
+  }
+
+  .p-index .content {
+    background: url('./assets/index_bg.png');
+    padding-bottom: 40px;
+  }
+
+  .p-index .content>.title {
+    margin: 42px 0 26px 0;
+    font-family: MicrosoftYaHei, 微软雅黑;
+    font-size: 28px;
+    color: #000000;
+    letter-spacing: 0.88px;
+    text-align: center;
+  }
+
+  .p-index .content .iconContainer {
+    height: 94px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .p-index .content .iconContainer .iconBox {
+    width: 140px;
+    text-align: center;
+    margin: 0 40px;
+  }
+
+  .p-index .content .iconContainer .iconBox .icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto;
+    background-size: 48px;
+    background-repeat: no-repeat;
+  }
+
+  .p-index .content .iconContainer .iconBox .icon-1 {
+    background-image: url('./assets/icon-index1.svg');
+  }
+
+  .p-index .content .iconContainer .iconBox .icon-2 {
+    background-image: url('./assets/icon-index2.svg');
+  }
+
+  .p-index .content .iconContainer .iconBox .icon-3 {
+    background-image: url('./assets/icon-index3.svg');
+  }
+
+  .p-index .content .iconContainer .iconBox .bar {
+    width: 17px;
+    height: 4px;
+    margin: 8px auto;
+    background-color: #ff6C01;
+  }
+
+  .p-index .content .bar {
+    margin-bottom: 80px;
+  }
+
+  .p-index .content .bannerContainer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .p-index .content .bannerContainer .banner {
+    width: 640px;
+    height: 350px;
+    position: relative;
+  }
+
+  .p-index .content .bannerContainer .banner .banner_1 {
+    width: 340px;
+    height: 255px;
+    background-image: url('./assets/index-banner-1.png');
+  }
+
+  .p-index .content .bannerContainer .banner .banner_2 {
+    position: absolute;
+    left: 236px;
+    top: 47px;
+    width: 400px;
+    height: 300px;
+    background-image: url('./assets/index-banner-2.png');
+  }
+
+  .p-index .content .bannerContainer .banner .banner_3 {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 85px;
+    height: 85px;
+    background-size: 85px;
+    background-image: url('./assets/qrcode.svg');
+  }
+
+  .p-index .content .bannerContainer .bannerText {
+    margin-left: 120px;
+    height: 275px;
+  }
+
+  .p-index .content .bannerContainer .bannerText .title {
+    font-family: MicrosoftYaHei, 微软雅黑;
+    font-size: 28px;
+    color: #000000;
+    letter-spacing: 2.33px;
+  }
+
+  .p-index .content .bannerContainer .bannerText .countInfo {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .p-index .content .bannerContainer .bannerText .countInfo .info_1 {
+    font-family: MicrosoftYaHei, 微软雅黑;
+    font-size: 14px;
+    color: #FF6C01;
+    letter-spacing: 1.17px;
+  }
+
+  .p-index .content .bannerContainer .bannerText .countInfo .info_2 {
+    font-family: MicrosoftYaHei, 微软雅黑;
+    font-size: 14px;
+    letter-spacing: 1.17px;
+  }
+
+  .p-index .content .bannerContainer .bannerText .countInfo .countBox {
+    font-family: DINAlternate-Bold;
+    font-size: 32px;
+    color: #FF6C01;
+    padding: 0 16px;
+  }
+
+  .p-index .content .bannerContainer .bannerText .countInfo .countBox span {
+    border-bottom: 4px solid #ff6C01;
+  }
+
+  .p-index .content .bannerContainer .bannerText .text {
+    opacity: 0.5;
+    font-family: MicrosoftYaHei, 微软雅黑;
+    font-size: 14px;
+    color: #000000;
+    letter-spacing: 1px;
+  }
+
+  .p-index .content .bannerContainer .bannerText .text_2 {
+    font-family: MicrosoftYaHei, 微软雅黑;
+    font-size: 18px;
+    color: #FF6C01;
+    letter-spacing: 1.5px;
+    margin: 16px 0;
+  }
+
+  .p-index .content .bannerContainer .bannerText .button {
+    background: #FF6C01;
+    border: 1px solid #ff6C01;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    transition: all 0.3s;
+    cursor: pointer;
+    outline: unset;
+    width: 100px;
+    padding: 4px 0;
+    font-size: 14px;
+  }
+
+  .p-index .content .bannerContainer .bannerText .button:hover {
+    background: #ff842c;
+  }
+
+  .p-index footer {
+    text-align: center;
+    padding: 6px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 108, 1, 0.1);
+  }
+</style>
+
+<body>
+
+  <div class="p-index">
+    <div class="header">
+      <div class="logo"></div>
+      <div class="button">
+        <button onClick="routerReg()">注册</button>
+        <button onClick="routerLogin()">登录</button>
+      </div>
+    </div>
+    <div class="scaleContainer">
+      <div class="scale-left">
+      </div>
+      <div class="scale-right">
+      </div>
+    </div>
+    <div class="content">
+      <div class="title">星+智能营销云平台</div>
+      <div class="iconContainer">
+        <div class="iconBox">
+          <div class="icon icon-1"></div>
+          <div class="bar"></div>
+          <div class="title">映前广告</div>
+        </div>
+        <div class="iconBox">
+          <div class="icon icon-2"></div>
+          <div class="bar"></div>
+          <div class="title">影视IP直播</div>
+        </div>
+        <div class="iconBox">
+          <div class="icon icon-3"></div>
+          <div class="bar"></div>
+          <div class="title">视频营销生态云平台</div>
+        </div>
+      </div>
+      <div class="bar"></div>
+      <div class="bannerContainer">
+        <div class="banner">
+          <div class="banner_1"></div>
+          <div class="banner_2"></div>
+          <div class="banner_3"></div>
+        </div>
+        <div class="bannerText">
+          <div class="title">专注映前广告投放</div>
+          <div class="countInfo">
+            <span class="info_1">汇聚超</span>
+            <span class="countBox">
+              <span>5000</span>+
+            </span>
+            <span class="info_2">影院</span>
+            <span class="countBox">
+              <span>30000</span>+
+            </span>
+            <span class="info_2">屏幕</span>
+          </div>
+          <div class="text">
+            <div>月入星海，鱼跃慧网</div>
+            <div>星你心意，鱼你同行</div>
+          </div>
+          <div class="text_2">让你的品牌传播更广</div>
+          <div>
+          </div>
+
+        </div>
+      </div>
+      <footer>Copyright © 2020-2020 星鱼备案 All rights reserved.</footer>
+    </div>
+  </div>
+
+</body>
+
+<script>
+  //var newPort = Number(location.port) + 1;
+  //var adminPath = location.protocol + '//' + location.hostname + ':' + newPort;
+
+  function routerLogin() {
+    //location.href = adminPath + '/login?type=account';
+	location.href = 'http://cloud.starsfishtech.com/login?type=account';
+  }
+  function routerReg() {
+    //location.href = adminPath + '/login?type=mailReg';
+	location.href = 'http://cloud.starsfishtech.com/login?type=mailReg';
+  }
+</script>
+
+</html>

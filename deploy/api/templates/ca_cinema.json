@@ -6,21 +6,31 @@
     "relationOnly": 0,   
     "target": [         
       {
-        "fields": [		 
-          "name",
-          "line_id",
-          "line_name",
+        "fields": [	
           "province",
           "city",
-          "district",
-          "org_id",
+          "",	 
+          "name",
           "qualification_number",
+          "line_name",         
+          "room_number",
+          "seat_number",     
+          "address",
           "contact_name",
-          "contact"
+          "contact"  
         ],
         "table": "ca_cinema",	
         "valueConverterMap": {},
         "values": []
+      }
+    ],
+    "unique": [  
+      {
+        "fields": [ 
+          "contact",
+	  "qualification_number"
+        ],
+        "table": "ca_cinema"
       }
     ]
   }

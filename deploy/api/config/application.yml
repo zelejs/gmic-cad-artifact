@@ -1,19 +1,23 @@
 ---
 spring:
+  http:
+      multipart:
+         max-file-size: 100MB
+         max-request-size: 100MB
+  #jackson:
+  #  date-format: yyyy-MM-dd HH:mm:ss
+  #  default-property-inclusion: non_empty
+  #  time-zone: Asia/Shanghai
   profiles: produce
   datasource:
-      url: jdbc:mysql://mysql:3306/cinema?autoReconnect=true&useUnicode=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+      url: jdbc:mysql://mysql:3306/cinema?useSSL=false&autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=Asia/Shanghai
       username: root
-      password: rootAZaz!123
+      password: rootAZaz@123
       filters: log4j,wall,mergeStat
       sql-script-encoding: UTF-8
       schema: classpath*:sql/*-schema.sql
       data: classpath*:sql/*-data.sql
       initialize: false
-  http:
-    multipart:
-      max-file-size: 200MB
-      max-request-size: 200MB
 
 logging:
   level: warn 
@@ -25,7 +29,10 @@ io:
 fs:
   fileUploadPath: /attachments
   fileHost: /attachments
+am:
+  json-serialize-date-format: yyyy-MM-dd HH:mm:ss
 
+---
 aliyun:
   sso:
     endpoint: "http://oss-cn-shenzhen.aliyuncs.com"
@@ -36,5 +43,7 @@ aliyun:
     thumbParam: "x-oss-process=image/resize,m_fill,h_750,w_750"
     accessUrl: "http://xxxxxx.oss-cn-shenzhen.aliyuncs.com/"
   sms:
-    accessKeyId: ""
-    accessKeySecret: ""
+    signName: "–«”„ø∆ºº"
+    accessKeyId: "LTAI4G5uDRahcSJsEXshhb5v"
+    accessSecret: "i0oYnQqdsIZHjO1vG36wsLNrkD1LhU"
+    enable: true
