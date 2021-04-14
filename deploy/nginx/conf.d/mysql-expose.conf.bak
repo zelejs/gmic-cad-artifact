@@ -11,6 +11,6 @@
 stream {
     server {
         listen 23306;
-        proxy_pass mysql:3306;
+        proxy_pass mysqlserver:3306;
     }
 }

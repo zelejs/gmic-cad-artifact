@@ -1,0 +1,15 @@
+version: '3'
+services:
+  # COMPOSE_DOCKER_CLI_BUILD=1 docker-compose build
+  api:
+    # image: zelejs/app-openjre11:latest
+    image: registry.docker.internal:5000/gmic:api
+    build:
+      context: ..
+      dockerfile: ./gmic-cad-artifact/Dockerfile.from.src
+
+  web:
+    image: registry.docker.internal:5000/gmic:web
+    build:
+      context: ..
+      dockerfile: ./gmic-cad-artifact/Dockerfile.web.dev

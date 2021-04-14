@@ -1,18 +1,16 @@
 version: '3'
 services:
+  # docker-compose -f docker-compose.yml up --detach --build  ## for recreating th
   api:
     # image: zelejs/app-openjre11:latest
     image: registry.docker.internal:5000/gmic:api
     container_name: gmic-api
-    privileged: true
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./attachments:/attachments
-      - ./api/config:/webapps/config
+      # - ./api:/webapps
     environment:
       DL_ROLLBACK: 'gmic-cad-artifact-1.0.0-standalone.jar'
-    ports: 
-      - 8080:8080
     logging:
       driver: "json-file"
       options:
@@ -23,13 +21,13 @@ services:
   web:
     # image: daocloud.io/library/nginx:latest
     image: registry.docker.internal:5000/gmic:web
-    container_name: gmic-web
+    container_name: web
+    privileged: true
     volumes:
       - /etc/localtime:/etc/localtime:ro
+      # - ./web/dist/admin:/usr/share/nginx/html
       - ./web/conf.d:/etc/nginx/conf.d
       - ./web/logs:/var/log/nginx
-    ports: 
-      - 8000:80
     logging:
       driver: "json-file"
       options:
@@ -43,9 +41,9 @@ services:
     environment:
       TZ: "Asia/Shanghai"
       MYSQL_DATABASE: 'cinema'
-      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_ROOT_PASSWORD: 'rootAZaz@123'
     volumes:
-      # - ./mysql/data:/var/lib/mysql
+      - ./mysql/data:/var/lib/mysql
       - ./mysql/conf.d/sql_mode.cnf:/etc/mysql/conf.d/sql_mode.cnf
     logging:
       driver: "json-file"
@@ -53,13 +51,14 @@ services:
         max-size: "10m"
 
   nginx:
-    container_name: gmic-nginx
+    container_name: nginx
     image: 'daocloud.io/library/nginx:latest'
     privileged: true
     restart: always
     ports:
-      - 8081:80
-      - 443:443
+      - 80:80
+      # - 443:443
+      # - 23306:23306
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/conf.d:/etc/nginx/conf.d
@@ -75,6 +74,45 @@ services:
       options:
         max-size: "500m"
         
+  mysqlbackup:
+    image: zelejs/mysqlbackup 
+    container_name: mysqlbackup
+    privileged: true
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./mysqlbackup/data:/var/mysqlbackup/data
+      - ./mysqlbackup/log:/var/mysqlbackup/log
+    environment:
+      MYSQL_DB: cinema
+      TZ: Asia/Shanghai
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: root 
+      MYSQL_USER_PASSWORD: rootAZaz@123
+      CRONTAB_DAILY_HOUR: 3
+      CRONTAB_DAILY_MIN: 25
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+  # redis:
+  #   container_name: redis
+  #   image: 'daocloud.io/library/redis:3.2.9'
+  #   environment:
+  #     TZ: "Asia/Shanghai"
+  #   ports:
+  #     - 6379:6379
+  #   volumes:
+  #     - ./redis/conf:/usr/local/etc/redis
+  #   command:
+  #     redis-server /usr/local/etc/redis/redis.conf
+  #datagear:
+  #  image: 'zelejs/datagear'
+  #  container_name: datagear
+  #  volumes:
+  #    - ./datagear/logs:/usr/local/tomcat/logs
+
 networks: 
   default:
-    name: gmic_cad_network
+    gmic_cad_network:

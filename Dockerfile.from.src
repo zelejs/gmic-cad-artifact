@@ -1,0 +1,32 @@
+#build-stage
+FROM zelejs/allin-web:alpine-m2 AS M2
+
+#build-stage
+FROM daocloud.io/library/maven:3.6.0-jdk-11-slim AS build
+
+# init .m2 from alpine-m2 image first
+WORKDIR /root/.m2
+COPY --from=M2 /root/.m2 /root/m2
+RUN --mount=type=cache,id=m2_cache,target=/root/.m2,rw cp -r /root/m2/* /root/.m2
+
+## mvn package
+WORKDIR /usr/src
+
+COPY gmic-cad-artifact/pom.api.xml ./pom.xml
+ADD ./gmic-cad-artifact ./gmic-cad-artifact
+ADD ./gmic-cad-oms ./gmic-cad-oms
+ADD ./gmic-cad-report ./gmic-cad-report
+ADD ./gmic-cad-users ./gmic-cad-users
+
+RUN --mount=type=cache,id=m2_cache,target=/root/.m2,rw mvn install
+
+WORKDIR /usr/src/gmic-cad-artifact
+RUN --mount=type=cache,id=m2_cache,target=/root/.m2,rw mvn -DskipStandalone=false package -Dmaven.test.skip=true
+
+#final-stage
+# FROM adoptopenjdk:11-jre-hotspot
+FROM zelejs/app-openjre11:latest
+WORKDIR /webapps
+COPY --from=build /usr/src/gmic-cad-artifact/target/*-standalone.jar /webapps/app.jar
+
+CMD ["java", "-jar", "/webapps/app.jar", "--spring.profiles.active=greenfield", "--server.port=8080"]

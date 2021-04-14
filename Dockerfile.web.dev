@@ -1,0 +1,22 @@
+FROM zelejs/zeroelement:cache as cache
+
+#build-stage
+FROM daocloud.io/library/node:12 as build
+
+WORKDIR /usr/src
+
+ADD ./gmic-cad-web-pages/web ./web
+ADD ./gmic-cad-web-pages/pages ./web/pages
+COPY --from=cache /usr/src/web/node_modules ./web/node_modules
+
+WORKDIR /usr/src/web
+
+RUN npm config set registry https://registry.npm.taobao.org
+# RUN --mount=type=cache,id=node_modules_cache,target=/usr/src/web/node_modules,rw npm install
+RUN npm install
+RUN npm run build
+
+#final-stage
+FROM daocloud.io/library/nginx:latest
+COPY --from=build /usr/src/web/dist/admin/* /usr/share/nginx/html/
+

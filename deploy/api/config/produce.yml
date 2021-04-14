@@ -1,0 +1,12 @@
+---
+spring:
+  profiles: produce
+  datasource:
+      url: jdbc:mysql://mysqlserver/test?autoReconnect=true&useUnicode=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=Asia/Shanghai&useSSL=false&characterEncoding=utf8
+      username: root
+      password: root
+      initialize: false 
+
+logging:
+  level: warn
+  config: config/logback-spring.xml

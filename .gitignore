@@ -17,3 +17,6 @@ obsel/
 .project
 .settings/
 code/
+deploy/mysql/data/
+deploy/api/cfr-0.150.jar
+deploy/api/ex-deploy-lib/
